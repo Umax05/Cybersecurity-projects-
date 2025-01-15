@@ -1,4 +1,4 @@
-**PasswordEncryptionTool** is a secure and user-friendly command-line application designed to encrypt and decrypt your sensitive files using robust password-based encryption. Built with Python and leveraging the `cryptography` library, this tool ensures your data remains protected from unauthorized access.
+**Password Encryption Tool** is a secure and user-friendly command-line application designed to encrypt and decrypt your sensitive files using robust password-based encryption. Built with Python and leveraging the `cryptography` library, this tool ensures your data remains protected from unauthorized access.
 
 Whether you need to safeguard personal documents, confidential work files, or any other important data, PasswordEncryptionTool provides a straightforward solution to maintain data privacy and security.
 
