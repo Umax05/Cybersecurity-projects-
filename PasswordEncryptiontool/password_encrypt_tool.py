@@ -31,33 +31,25 @@ def encrypt_file(file_path: str, password: str, remove_original: bool = False) -
     If remove_original is True, deletes the original file after encryption.
     """
     try:
-        # Generate a random 16-byte salt
         salt = secrets.token_bytes(16)
         key = derive_key(password, salt)
         fernet = Fernet(key)
 
-        # Read the original file data
         with open(file_path, 'rb') as file:
             original_data = file.read()
 
-        # Encrypt the data
         encrypted_data = fernet.encrypt(original_data)
 
-        # Prepend the salt to the encrypted data
         encrypted_data_with_salt = salt + encrypted_data
 
-        # Define the encrypted file path
         encrypted_file_path = file_path + '.enc'
 
-        # Write the encrypted data to the new file
         with open(encrypted_file_path, 'wb') as enc_file:
             enc_file.write(encrypted_data_with_salt)
 
-        # Optionally remove the original file
         if remove_original:
             os.remove(file_path)
 
-        # **Corrected Print Statement Below**
         print(f"✅ File encrypted successfully!\nEncrypted file saved as '{os.path.basename(encrypted_file_path)}'.\n")
 
     except FileNotFoundError:
@@ -73,37 +65,29 @@ def decrypt_file(encrypted_file_path: str, password: str, remove_encrypted: bool
     Assumes the file has a '.enc' extension and removes it after decryption if specified.
     """
     try:
-        # Read the encrypted data
         with open(encrypted_file_path, 'rb') as enc_file:
             encrypted_data_with_salt = enc_file.read()
 
-        # Check if the file is long enough to contain a salt
         if len(encrypted_data_with_salt) < 16:
             print("❌ Error: The encrypted file is corrupted or incomplete.")
             return
 
-        # Extract the salt (first 16 bytes)
         salt = encrypted_data_with_salt[:16]
         encrypted_data = encrypted_data_with_salt[16:]
 
-        # Derive the key using the extracted salt and provided password
         key = derive_key(password, salt)
         fernet = Fernet(key)
 
-        # Decrypt the data
         decrypted_data = fernet.decrypt(encrypted_data)
 
-        # Define the decrypted file path by removing the '.enc' extension
         if encrypted_file_path.endswith('.enc'):
             decrypted_file_path = encrypted_file_path[:-4]
         else:
             decrypted_file_path = encrypted_file_path + '.dec'
 
-        # Write the decrypted data to the new file
         with open(decrypted_file_path, 'wb') as dec_file:
             dec_file.write(decrypted_data)
 
-        # Optionally remove the encrypted file
         if remove_encrypted:
             os.remove(encrypted_file_path)
 
