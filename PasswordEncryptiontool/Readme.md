@@ -9,5 +9,4 @@ Whether you need to safeguard personal documents, confidential work files, or an
 - **Password Protection:** Ensures that your passwords are never stored or transmitted insecurely.
 - **Logging:** Maintains detailed logs of all encryption and decryption activities for auditing purposes.
 - **Cross-Platform Compatibility:** Works seamlessly on Windows, macOS, and Linux.
-- **Batch Processing (Planned):** Ability to encrypt or decrypt multiple files simultaneously (future enhancement).
 
