@@ -6,3 +6,5 @@
 1.-Password Strength Checker
 
 2.-Random Password Generator
+
+3.-Password Encryption tool
